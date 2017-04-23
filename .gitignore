@@ -1,0 +1,4 @@
+*.pyc
+scigen/
+*.sw[op]
+.ropeproject/

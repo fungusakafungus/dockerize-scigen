@@ -1,0 +1,38 @@
+# vim: ts=2 sw=2 sts=1
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: scigen-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: scigen
+    spec:
+      containers:
+      - image: eu.gcr.io/python-search-158121/scigen:latest
+        name: scigen
+        imagePullPolicy: Always
+        volumeMounts:
+          - mountPath: /scigen/scigen
+            name: git-volume
+        ports:
+          - containerPort: 8080
+      volumes:
+        - name: git-volume
+          gitRepo:
+            repository: "https://github.com/bnurgenc/scigen.git"
+            revision: "master"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: scigen-service
+spec:
+  selector:
+    app: scigen
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
