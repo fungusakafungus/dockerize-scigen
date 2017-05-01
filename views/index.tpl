@@ -2,9 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Output files</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <title>SciGen - Output files</title>
   </head>
   <body>
     <code>
